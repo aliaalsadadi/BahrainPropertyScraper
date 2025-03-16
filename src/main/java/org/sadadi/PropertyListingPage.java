@@ -49,9 +49,11 @@ public class PropertyListingPage {
                 .collect(Collectors.toList());
     }
 
-    public List<String> getAllPrices() {
+    public List<Integer> getAllPrices() {
         return prices.stream()
-                .map(WebElement::getText)
+                .map(WebElement::getText)   // Extract text from each element
+                .map(text -> text.replaceAll("[^0-9]", "")) // Remove non-numeric characters
+                .map(Integer::parseInt)  // Convert to integer
                 .collect(Collectors.toList());
     }
 

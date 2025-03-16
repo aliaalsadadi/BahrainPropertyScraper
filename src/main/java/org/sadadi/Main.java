@@ -14,7 +14,7 @@ public class Main {
         PropertyListingPage listingPage = new PropertyListingPage(driver);
 
         List<String> titles = listingPage.getAllTitles();
-        List<String> prices = listingPage.getAllPrices();
+        List<Integer> prices = listingPage.getAllPrices();
         List<String> locations = listingPage.getAllLocations();
         List<String> RentorSale = listingPage.getAllRentorSale();
         List<String> propertyTypes = listingPage.getAllPropertyTypes();
@@ -37,6 +37,10 @@ public class Main {
 
             // Print the values
             for (int i = 0; i < expectedSize; i++) {
+                Property property = new Property(titles.get(i), prices.get(i),
+                        locations.get(i), RentorSale.get(i), propertyTypes.get(i), numberOfBeds.get(i),
+                        numberOfBaths.get(i), sqmAreas.get(i));
+                DBHelper.addProperty(property);
                 System.out.println("Listing " + (i + 1) + ":");
                 System.out.println("Title: " + titles.get(i));
                 System.out.println("Price: " + prices.get(i));
